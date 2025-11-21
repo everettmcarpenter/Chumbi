@@ -1,0 +1,23 @@
+{
+    "api_version": {
+        "major": 10,
+        "minor": 2
+    },
+    "arch": "x86_64",
+    "files": [
+        {
+            "checksum": "bd80ea464447715829c6a2175cd50a55d666e4cb48607432dbd852a605c185df",
+            "file_type": "zip",
+            "local_dir": "./",
+            "url": "https://everettcarpenter.neocities.org/Chumbi/0.1.0/windows/Chumbi.zip"
+        }
+    ],
+    "language_version_min": {
+        "major": 5,
+        "mega": 1,
+        "minor": 4,
+        "patch": 0
+    },
+    "os": "windows",
+    "version": "0.1.0"
+}

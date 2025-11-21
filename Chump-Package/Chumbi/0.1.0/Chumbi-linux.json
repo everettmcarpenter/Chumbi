@@ -6,10 +6,10 @@
     "arch": "x86_64",
     "files": [
         {
-            "checksum": "8739c76e681f900923b900c9df0ef75cf421d39cabb54650c4b9ad19b6a76d85",
+            "checksum": "cf516a30c6f43233291073708bb40d67013b12c2389042de96aa3066b9c0707c",
             "file_type": "zip",
             "local_dir": "./",
-            "url": "https://github.com/SaintEverett/Chumbi.gitchugins/Chumbi/0.1.0/windows/Chumbi.zip"
+            "url": "https://everettcarpenter.neocities.org/Chumbi/0.1.0/linux/Chumbi.zip"
         }
     ],
     "language_version_min": {
@@ -18,6 +18,6 @@
         "minor": 4,
         "patch": 0
     },
-    "os": "windows",
+    "os": "linux",
     "version": "0.1.0"
 }

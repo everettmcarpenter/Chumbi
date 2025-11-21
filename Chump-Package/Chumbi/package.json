@@ -2,8 +2,8 @@
     "authors": [
         "Everett M. Carpenter"
     ],
-    "description": "",
-    "homepage": "https://github.com/SaintEverett/Chumbi.git",
+    "description": "A Chump package designed for the creation of ambisonic architectures in ChucK. Meant for encoding, decoding and altering B-Format ambisonic signals, but misuse is always welcome.",
+    "homepage": "https://github.com/SaintEverett/Chumbi",
     "keywords": [
         "ambisonics",
         "chugins",
@@ -12,5 +12,5 @@
     ],
     "license": "MIT",
     "name": "Chumbi",
-    "repository": "https://github.com/SaintEverett/Chumbi.git"
+    "repository": "https://github.com/SaintEverett/Chumbi"
 }

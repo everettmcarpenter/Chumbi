@@ -1,0 +1,218 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% University/School Laboratory Report
+% LaTeX Template
+% Version 4.0 (March 21, 2022)
+%
+% This template originates from:
+% https://www.LaTeXTemplates.com
+%
+% Authors:
+% Vel (vel@latextemplates.com)
+% Linux and Unix Users Group at Virginia Tech Wiki
+%
+% License:
+% CC BY-NC-SA 4.0 (https://creativecommons.org/licenses/by-nc-sa/4.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%   DEFS
+%----------------------------------------------------------------------------------------
+\def\maxOrder{5}
+\def\numDecoders{2}
+
+\def\papertitle{What \textit{is} Chumbi? \\ An API Reference for ChucK's Ambisonics Package}
+\def\firstauthor{Everett M. Carpenter}
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[
+	letterpaper, % Paper size, specify a4paper (A4) or letterpaper (US letter)
+	10pt, % Default font size, specify 10pt, 11pt or 12pt
+]{Chumbi-Doc}
+
+\newif\ifpdf
+\ifx\pdfoutput\relax
+\else
+   \ifcase\pdfoutput
+      \pdffalse
+   \else
+      \pdftrue
+  \fi
+\fi
+
+\ifpdf % compiling with pdflatex
+  \usepackage[pdftex,
+    pdftitle={\papertitle},
+    pdfauthor={\firstauthor},
+    bookmarksnumbered, % use section numbers with bookmarks
+    pdfstartview=XYZ % start with zoom=100% instead of full screen; 
+                     % especially useful if working with a big screen :-)
+   ]{hyperref}
+  %\pdfcompresslevel=9
+
+  \usepackage[pdftex]{graphicx}
+  % declare the path(s) where your graphic files are and their extensions so 
+  %you won't have to specify these with every instance of \includegraphics
+  \graphicspath{{./figures/}}
+  \DeclareGraphicsExtensions{.pdf,.jpeg,.png}
+
+  \usepackage[figure,table]{hypcap}
+
+\else % compiling with latex
+  \usepackage[dvips,
+    bookmarksnumbered, % use section numbers with bookmarks
+    pdfstartview=XYZ % start with zoom=100% instead of full screen
+  ]{hyperref}  % hyperrefs are active in the pdf file after conversion
+
+  \usepackage[dvips]{epsfig,graphicx}
+  % declare the path(s) where your graphic files are and their extensions so 
+  %you won't have to specify these with every instance of \includegraphics
+  \graphicspath{{./figures/}}
+  \DeclareGraphicsExtensions{.eps}
+
+  \usepackage[figure,table]{hypcap}
+\fi
+
+%setup the hyperref package - make the links black without a surrounding frame
+\hypersetup{
+    colorlinks,%
+    citecolor=black,%
+    filecolor=black,%
+    linkcolor=black,%
+    urlcolor=black
+}
+
+%----------------------------------------------------------------------------------------
+%	REPORT INFORMATION
+%----------------------------------------------------------------------------------------
+
+\title{\papertitle} % Report title
+
+\author{\firstauthor} % Author name(s), add additional authors like: '\& James \textsc{Smith}'
+
+\date{\today} % Date of the report
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+\maketitle % Insert the title, author and date using the information specified above
+
+\begin{center}
+	\begin{tabular}{l r}
+		Created by Everett M. Carpenter while completing a \\ Bachelor of Science at Rensselaer Polytechnic Institute. 
+	\end{tabular}
+\end{center}
+
+% If you need to include an abstract, uncomment the lines below
+\begin{abstract}
+	This document serves as active reference for the ChucK package titled Chumbi. Chumbi serves as a hub for ambisonic processors within ChucK, hosting encoders, decoders, soundfield utilities, and microphone signal converters. 
+\end{abstract}
+
+%----------------------------------------------------------------------------------------
+%	OBJECTIVE
+%----------------------------------------------------------------------------------------
+
+\section{Introduction}
+
+At the beginning of my time at Rensselaer Polytechnic Institute (RPI), I began using the ChucK programming language. ChucK is a programming language which grants programmers the ability to control the flow of time \cite{TheChucK}. I quickly developed many synthesizers, samplers, audio effects, etc.. While constructing these, I begun researching optimal ways of controlling loudspeaker arrays. As a result of this research, I became increasingly interested in ambisonics. Utilizing resources such as Institute of Electronic Music and Acoustics (IEM) and the Audio Engineering Society (AES), I read myself into the acoustic and mathematical theory of ambisonics. Inside ChucK, I assembled a very immature system for ambisonic processing utilizing gain altering unit generators (UGens). If I recall correctly, this system was initially titled "ChucKbisonics" and utilized a custom ChucK class called "AmbiMath" to calculate spherical harmonic values. If it were to be maintained, it was important that this code leaves the higher level ChucK programming language. So, it was rewritten in C++ and brought into ChucK via the Chugin framework \cite{ChuginsChugraphsChugens}. Due to the project being rewritten in C++, performance was fast and reliable. Now, Chumbi hangs out inside of ChucK's package manager ChuMP \cite{ChuMP}, where I continue to update it. That is the basis of this document; an ever-growing manual of Chumbi to allow new (and old) users to reference it. It will contain examples using Chumbi, as well as all the API reference you could need. 
+
+%----------------------------------------------------------------------------------------
+%	Encoders
+%----------------------------------------------------------------------------------------
+
+\section{Encoders}
+As of \date{\today}, Chumbi only provides one ambisonic encoder, EncodeN. EncodeN operates at orders 1-\maxOrder, has one input, and outputs $(N+1)^2$ channels. The following defines all member functions of EncodeN.
+
+% Usage
+\begin{apireference}{EncodeN Class}
+\apimethod{geti()}
+{float geti(int index)}
+{Get the spherical harmonic value at the specified index.}
+{\texttt{index} (int): Index of spherical harmonic (0-based)}
+
+\apimethod{seti()}
+{void seti(float sh, int index)}
+{Sets the spherical harmonic value at the specified index.}
+{\texttt{sh} (float): Value to set\\ \texttt{index} (int): Target index}
+
+\apimethod{coeff()}
+{float[] coeff()}
+{Get all spherical harmonics actively being used.}
+{None}
+
+\apimethod{pos()}
+{float[] pos()}
+{Same as coeff()}
+{None}
+
+\apimethod{pos()}
+{void pos(float azimuth, float zenith)}
+{Set the position of the encoder.}
+{\texttt{azimuth} (float): In degrees, 0 is straight forward \\ \texttt{zenith} (float): In degrees, 90 is directly above and -90 is below.}
+
+\apimethod{azi()}
+{float azi()}
+{Get the azimuth value currently being used.}
+{None}
+
+\apimethod{azi()}
+{void azi(float azimuth)}
+{Set the azimuth value to be used.}
+{\texttt{azimuth} (float): In degrees, 0 is straight forward.}
+
+\apimethod{zeni()}
+{float zeni()}
+{Get the zenith value currently being used.}
+{None}
+
+\apimethod{zeni()}
+{void zeni(float zenith)}
+{Set the zenith value to be used.}
+{\texttt{zenith} (float): In degrees, 0 is horizontal, 90 is above, -90 is below.}
+
+\end{apireference}
+
+\newpage
+
+%----------------------------------------------------------------------------------------
+%	Decoders
+%----------------------------------------------------------------------------------------
+
+\section{Decoders}
+As of \date{\today}, Chumbi only provides \numDecoders ambisonic decoders. They operate at orders 1-\maxOrder, they have $(N+1)^2$ inputs and outputs. Their outputs can be interpreted as loudspeaker signals, with inputs as B-Format signals. The following are member functions inherited by all decoders in Chumbi.
+
+\begin{apireference}{DecodeN Class}
+    \apimethod{placement()}
+    {float[2][] placement()}
+    {Get all spherical harmonics actively being used.}
+    {None}
+    
+    \apimethod{placement()}
+    {void placement(float[2][])}
+    {Set the speaker placements to be used.}
+    {\texttt{speakerAngles} (float[2][]): Pairs of speaker azimuth and zenith angles.}
+    
+    \apimethod{weights()}
+    {float[] weights()}
+    {Get all weights actively being used.}
+    {None}
+
+    \apimethod{weights()}
+    {void weights(float[])}
+    {Set all weights to be used.}
+    {\texttt{weights} (float[]): Set weighting system to be used while decoding.}
+\end{apireference}
+
+%----------------------------------------------------------------------------------------
+%	BIBLIOGRAPHY
+%----------------------------------------------------------------------------------------
+
+\bibliography{chumbi-doc}
+
+%----------------------------------------------------------------------------------------
+
+\end{document}

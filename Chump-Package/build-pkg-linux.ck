@@ -1,64 +1,57 @@
-@import "Chumpinate"
+@import "Chumpinate.chug"
 
-// Our package version
-"1.0.0" => string version;
+"0.1.0" => string version;
 
 <<< "Generating Chumpinate package version " >>>;
 
-// instantiate a Chumpinate package
 Package pkg("Chumbi");
 
-// Add our metadata...
 "Everett M. Carpenter" => pkg.authors;
 
 "https://github.com/SaintEverett/Chumbi" => pkg.homepage;
 "https://github.com/SaintEverett/Chumbi" => pkg.repository;
 
 "MIT" => pkg.license;
-"Chugins for Ambisonic processing within the ChucK programming language" => pkg.description;
+"A Chump package designed for the creation of ambisonic architectures in ChucK. Meant for encoding, decoding and altering B-Format ambisonic signals, but misuse is always welcome." => pkg.description;
 
-["Ambisonics", "Chugins", "Spatialization", "Spherical Harmonics"] => pkg.keywords;
+["ambisonics", "chugins", "spatialization", "multichannel"] => pkg.keywords;
 
-// generate a package-definition.json
-// This will be stored in "Chumpinate/package.json"
 "./" => pkg.generatePackageDefinition;
 
-<<< "Defining version " + version >>>;;
+<<< "Defining version " + version >>>;
 
-// Version
-PackageVersion vers("Pana", "1.0.0"); 
+PackageVersion vers("Chumbi", version);
 
-"1.5.4.1" => vers.languageVersionMin;
-"1.0" => ver.apiVersion;
+"10.2" => vers.apiVersion;
 
-"linux" => ver.os;
-"x86_64" => ver.arch;
+"1.5.4.0" => vers.languageVersionMin;
 
-// The chugin file
-ver.addFile("../builddir-release/chumpinate/Chumpinate.chug");
+"linux" => vers.os;
+"x86_64" => vers.arch;
 
-// These build files are examples as well
-ver.addExampleFile("build-pkg-win.ck");
-ver.addExampleFile("build-pkg-mac.ck");
-ver.addExampleFile("build-pkg-linux.ck");
+vers.addFile("Encode-Decode.chug/current-builds/linux/Encode.chug");
+vers.addFile("Encode-Decode.chug/current-builds/linux/Decode.chug");
+vers.addFile("Encode-Decode.chug/current-builds/linux/SADN.chug");
+vers.addFile("Encode-Decode.chug/current-builds/linux/BFormat.chug");
 
-// Documentation files
-ver.addDocsFile("./index.html");
-ver.addDocsFile("./chumpinate.html");
-ver.addDocsFile("./ckdoc.css");
+vers.addExampleFile("examples/ambisonic-recorder.ck");
+vers.addExampleFile("examples/basic-2nd-order-virtual-sources.ck");
+vers.addExampleFile("examples/wireless-interface.ck");
+vers.addExampleFile("examples/spatial-visualizer.ck");
 
-"chugins/Chumpinate/" + ver.version() + "/" + ver.os() + "/Chumpinate.zip" => string path;
+vers.addDocsFile("chumbi-doc/chumbi.html");
+vers.addDocsFile("chumbi-doc/index.html");
+vers.addDocsFile("chumbi-doc/ckdoc.css");
+
+"Chumbi/" + vers.version() + "/" + vers.os() + "/Chumbi.zip" => string path;
 
 <<< path >>>;
 
-// wrap up all our files into a zip file, and tell Chumpinate what URL
-// this zip file will be located at.
-ver.generateVersion("./", "Chumpinate_linux", "https://ccrma.stanford.edu/~nshaheed/" + path);
+vers.generateVersion("./", "Chumbi-"+vers.os(), "https://everettcarpenter.neocities.org/" + path);
 
 chout <= "Use the following commands to upload the package to CCRMA's servers:" <= IO.newline();
 chout <= "ssh nshaheed@ccrma-gate.stanford.edu \"mkdir -p ~/Library/Web/chugins/Chumpinate/"
-      <= ver.version() <= "/" <= ver.os() <= "\"" <= IO.newline();
-chout <= "scp Chumpinate_linux.zip nshaheed@ccrma-gate.stanford.edu:~/Library/Web/" <= path <= IO.newline();
+      <= vers.version() <= "/" <= vers.os() <= "\"" <= IO.newline();
+chout <= "scp Chumpinate_windows.zip nshaheed@ccrma-gate.stanford.edu:~/Library/Web/" <= path <= IO.newline();
 
-// Generate a version definition json file, stores this in "chumpinate/<VerNo>/Chumpinate_linux.json"
-ver.generateVersionDefinition("Chumpinate_linux", "./" );
+vers.generateVersionDefinition("Chumbi-"+vers.os(), "./" );
