@@ -6,7 +6,7 @@
     "arch": "x86_64",
     "files": [
         {
-            "checksum": "cf516a30c6f43233291073708bb40d67013b12c2389042de96aa3066b9c0707c",
+            "checksum": "4fdbb50907dfe12c78c69d7b31d30b32715bf2f64e04ded52942e0f9efb86864",
             "file_type": "zip",
             "local_dir": "./",
             "url": "https://everettcarpenter.neocities.org/Chumbi/0.1.0/linux/Chumbi.zip"

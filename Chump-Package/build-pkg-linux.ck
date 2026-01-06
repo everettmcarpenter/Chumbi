@@ -29,10 +29,12 @@ PackageVersion vers("Chumbi", version);
 "linux" => vers.os;
 "x86_64" => vers.arch;
 
-vers.addFile("Encode-Decode.chug/current-builds/linux/Encode.chug");
-vers.addFile("Encode-Decode.chug/current-builds/linux/Decode.chug");
-vers.addFile("Encode-Decode.chug/current-builds/linux/SADN.chug");
-vers.addFile("Encode-Decode.chug/current-builds/linux/BFormat.chug");
+vers.addFile("chugins/linux/Encode.chug");
+vers.addFile("chugins/linux/Decode.chug");
+vers.addFile("chugins/linux/SADN.chug");
+vers.addFile("chugins/linux/OrderGain.chug");
+vers.addFile("chugins/linux/Mirror.chug");
+vers.addFile("chugins/linux/ABFormat.chug");
 
 vers.addExampleFile("examples/ambisonic-recorder.ck");
 vers.addExampleFile("examples/basic-2nd-order-virtual-sources.ck");

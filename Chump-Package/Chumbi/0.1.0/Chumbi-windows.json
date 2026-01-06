@@ -6,7 +6,7 @@
     "arch": "x86_64",
     "files": [
         {
-            "checksum": "bd80ea464447715829c6a2175cd50a55d666e4cb48607432dbd852a605c185df",
+            "checksum": "34cbfb5268912c06f39a1e6a05981b0313d1ce2cbd85437f686735b6a2564003",
             "file_type": "zip",
             "local_dir": "./",
             "url": "https://everettcarpenter.neocities.org/Chumbi/0.1.0/windows/Chumbi.zip"
