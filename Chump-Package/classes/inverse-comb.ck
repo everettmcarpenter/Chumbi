@@ -1,8 +1,10 @@
-//========================================
+// -------------------------------------------------------------------------------------------------
 //
+//      name: inverse-comb.ck (class)
+//      author: everett m. carpenter
+//      desc: inverse comb filter taken from Ken Steiglitz book "A Digital Signal Processing Primer"
 //
-//
-//========================================
+// -------------------------------------------------------------------------------------------------
 
 public class InvComb extends Chugraph
 {

@@ -1,5 +1,13 @@
-@import "allpass-class.ck"
-@import "simple-lp-class.ck"
+// ----------------------------------------------------------------------------------------------
+//
+//      name: string-model.ck (class)
+//      author: everett m. carpenter
+//      desc: string model taken from Ken Steiglitz book "A Digital Signal Processing Primer"
+//
+// ----------------------------------------------------------------------------------------------
+
+@import "allpass.ck"
+@import "simple-lp.ck"
 
 public class StringModel extends Chugraph
 {

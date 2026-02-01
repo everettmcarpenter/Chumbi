@@ -1,3 +1,11 @@
+// -------------------------------------------------------------------------------------------------
+//
+//      name: allpass.ck (class)
+//      author: everett m. carpenter
+//      desc: all pass filter taken from Ken Steiglitz book "A Digital Signal Processing Primer"
+//
+// -------------------------------------------------------------------------------------------------
+
 public class Allpass extends Chugraph
 {
     Delay forward;
