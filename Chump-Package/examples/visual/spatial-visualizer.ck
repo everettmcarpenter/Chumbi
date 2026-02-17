@@ -4,7 +4,7 @@ else me.exit();
 
 Encode3 enc[SOURCE_COUNT];
 SinOsc sin[SOURCE_COUNT];
-BFormat3 sum(1.0/(SOURCE_COUNT));
+OrderGain3 sum(1.0/(SOURCE_COUNT));
 WvOut record[sum.channels()]; // record
 
 for(int i; i < SOURCE_COUNT; i++)

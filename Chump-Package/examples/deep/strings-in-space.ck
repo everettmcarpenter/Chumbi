@@ -1,4 +1,4 @@
-@import "../classes/plucked-string.ck"
+@import "../../classes/plucked-string.ck"
 
 if(dac.channels() < 9) me.exit(); // not enough channels?
 int n;
